@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Finance Manager</title>
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#fff"/>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if user_signed_in? %>
+      <div class="ui labeled icon sidebar vertical menu">
+          <%= render 'layouts/navigation' %>
+      </div>
+      <div class="pusher">
+          <%= render 'layouts/menu' %>
+          <div class="ui container">
+            <%= yield %>    
+          </div>
+      </div>
+    <% else %>
+      <div class="ui container">
+        <%= yield %>  
+      </div>
+    <% end %>
+  </body>
+</html>

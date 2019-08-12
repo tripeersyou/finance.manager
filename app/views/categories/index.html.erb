@@ -1,0 +1,20 @@
+<br>
+<div class="ui six stackable cards">
+    <% @categories.each do |category| %>
+    <div class="card">
+        <div class="content" style="text-align:center;">
+            <div class="header" > 
+                <%= category.name %>
+            </div>
+            <div class="meta">
+                Category Icon: <%= semantic_icon(category.icon) %>
+            </div>
+        </div>
+        <div class="extra content centered">
+            <%= link_to 'Edit', edit_category_path(category), class: 'ui fluid secondary button'%>
+        </div>
+    </div>
+    <% end %>
+</div>
+<br>
+<a href="<%= new_category_path%>" class="fluid ui primary button">Add a Category</a>

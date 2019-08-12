@@ -1,0 +1,24 @@
+<br>
+<div class="ui three stackable cards">
+    <% @accounts.each do |account| %>
+    <div class="card">
+        <div class="content">
+            <div class="header"> <%= account.name %></div>
+            <div class="meta">
+                <%= link_to 'View Account', account_path(account), style: 'color: blue; text-decoration: underline'%><br>
+                Current Balance: <%= 'Php %.2f' % account.balance %> <br>
+                Transaction Count: <%= account.incomes.count + account.expenses.count %><br>
+            </div>
+        </div>
+        <div class="extra content centered">
+            <div class="ui buttons">
+                <%= link_to 'Add Expense', new_account_expense_path(account), class: 'ui primary button' %>
+                <%= link_to 'Add Income', new_account_income_path(account), class: 'ui green button'%>
+                <%= link_to 'Transfer', new_account_transfer_path(account), class: 'ui secondary button'%>
+            </div>
+        </div>
+    </div>
+    <% end %>
+</div>
+<br>
+<a href="<%= new_account_path%>" class="fluid ui primary button">Add an Account</a>

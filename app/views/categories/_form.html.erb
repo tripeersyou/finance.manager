@@ -1,0 +1,28 @@
+<%= simple_form_for(@category, html: {class: 'ui form'}) do |f| %>
+    <div class="field">
+        <%= f.input :name, label: 'Category Name' %>
+    </div>
+    <div class="field">
+         <label class="select optional" for="category_icon">Icon</label>
+         <div class="ui fluid search selection dropdown">
+            <input class="string optional" type="hidden" name="category[icon]" id="category_icon">
+            <i class="dropdown icon"></i>
+            <div class="default text"></div>
+            <div class="menu">
+            <% @icon_names.each do |icon| %>
+                <div class="item" data-value="<%= icon %>"><i class="<%= icon %> icon"></i> <%=icon %></div>
+            <% end %>
+            </menu>
+         </div>
+    </div>
+    <br>
+    <div class="field">
+        <%= f.button :submit, class: 'ui fluid primary button' %>
+    </div>
+<% end %>
+
+<script>
+$(document).on('turbolinks:load', function(){
+    $('.search.dropdown').dropdown();
+  });
+</script>

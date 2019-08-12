@@ -1,0 +1,19 @@
+<%= simple_form_for([@account, @expense],url: account_transfers_path, html: {class: 'ui form'}) do |f| %>
+    <div class="field">
+        <label>Receipient</label>
+        <select name="receipient" id="transfer_receipient">
+            <%= current_user.accounts.all.where('id != ?', @account.id).each do |account| %>
+                <option value="<%= account.id %>"><%= account.name %></option>
+            <% end %>
+        </select>
+    </div>
+    <div class="field">
+        <%= f.input :amount %>
+    </div>
+    <div class="field">
+        <%= f.association :category %>
+    </div>
+    <div class="field">
+        <%= f.button :submit, class: 'ui fluid button primary' %>
+    </div>
+<% end %>

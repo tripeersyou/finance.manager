@@ -1,0 +1,11 @@
+<%= simple_form_for(@account, html: {class: 'ui form'}) do |f| %>
+    <div class="field">
+        <%= f.input :name %>
+    </div>
+    <div class="field">
+        <%= f.input :balance, label: 'Current Balance' %>
+    </div>
+    <div class="field">
+        <%= f.button :submit, class: 'fluid ui primary button' %>
+    </div>
+<% end %>

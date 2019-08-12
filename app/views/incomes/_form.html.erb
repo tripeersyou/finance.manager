@@ -1,0 +1,14 @@
+<%= simple_form_for([@account, @income], html: {class: 'ui form'}) do |f| %>
+    <div class="field">
+        <%= f.input :amount %>
+    </div>
+    <div class="field">
+        <%= f.input :description %>
+    </div>
+    <div class="field">
+        <%= f.association :category %>
+    </div>
+    <div class="field">
+        <%= f.button :submit, class: 'ui fluid button primary' %>
+    </div>
+<% end %>

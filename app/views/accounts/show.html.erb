@@ -1,0 +1,72 @@
+<%= link_to 'Back', accounts_path %>
+<h1><%= @account.name %></h1>
+ Current Balance: <%= 'Php %.2f' % @account.balance %>
+<br>
+<div class="ui buttons">
+  <%= link_to 'Add Expense', new_account_expense_path(@account), class: 'ui primary button' %>
+  <%= link_to 'Add Income', new_account_income_path(@account), class: 'ui green button'%>
+  <%= link_to 'Transfer', new_account_transfer_path(@account), class: 'ui secondary button'%>
+  <%= link_to "Edit Account", edit_account_path(@account), class: 'ui primary button' %>
+</div>
+
+<div class="ui top attached tabular menu active">
+  <a class="active item" data-tab="expenses">
+    Expenses
+  </a>
+  <a class="item" data-tab="income">
+    Income
+  </a>
+</div>
+
+<div class="ui bottom attached active tab segment" data-tab="expenses">
+  <div class="ui feed">
+    <% @account.expenses.each do |expense| %>
+      <div class="event">
+        <div class="label">
+          <%= semantic_icon(expense.category.icon) %>
+        </div>
+        <div class="content">
+          Expense worth P <%= expense.amount %> recorded. <br>
+          Description: <%= expense.description %>
+          <br><br>
+          <div class="date"> <%= expense.created_at.strftime("%B %d, %Y") %></div>
+        </div>
+        <div class="meta">
+          <a class="category">
+            <b>Category</b>: <%= expense.category.name %>
+          </a> | 
+          <%= link_to 'Edit Expense', edit_account_expense_path(@account, expense) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="ui bottom attached tab segment" data-tab="income">
+  <div class="ui feed">
+    <% @account.incomes.each do |income| %>
+      <div class="event">
+        <div class="label">
+          <%= semantic_icon(income.category.icon) %>
+        </div>
+        <div class="content">
+          Income worth P <%= income.amount %> recorded.<br>
+          Description: <%= income.description %>
+          <br><br>
+          <div class="date"> <%= income.created_at.strftime("%B %d, %Y") %></div>
+        </div>
+        <div class="meta">
+          <a class="category">
+            <b>Category</b>: <%= income.category.name %>
+          </a>| 
+          <%= link_to 'Edit Income', edit_account_income_path(@account, income) %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+  $(document).on('turbolinks:load', function(){
+    $('.menu .item').tab();
+  });
+</script>
